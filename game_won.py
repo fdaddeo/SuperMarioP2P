@@ -279,9 +279,3 @@ class GameWonView(arcade.View):
         # Reset the button
         if self.write_btn.clicked == True:
             self.write_btn.clicked = False
-
-if __name__ == "__main__":
-    window = arcade.Window(SCREEN_WIDTH, SCREEN_HEIGHT, "SCREEN_TITLE")
-    menu_view = GameWonView(True, 50, 3)
-    window.show_view(menu_view)
-    arcade.run()
