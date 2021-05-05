@@ -27,7 +27,7 @@ PLAYER_MOVEMENT_SPEED = 5
 GRAVITY = 1.75
 PLAYER_JUMP_SPEED = 21
 PLAYER_START_X = 11
-PLAYER_START_Y = 200
+PLAYER_START_Y = 300
 FIREBALL_SPEED = 6
 
 # How many pixels to keep as a minimum margin between the character
@@ -803,6 +803,7 @@ class MyGame(arcade.View, threading.Thread, BanyanBase):
         self.background_list.draw()
         self.window_list.draw()
         self.wall_list.draw()
+        self.platform_list.draw()
         self.door_sprite.draw()
         self.checkpoint_sprite.draw()
         self.coin_list.draw()
@@ -914,7 +915,6 @@ class MyGame(arcade.View, threading.Thread, BanyanBase):
             self.powerup_sprite = Powerup(float(record[1]), float(record[2]))
             self.powerup_list.append(self.powerup_sprite)
         
-
         # --- Load in the coordinates for goomba creation ---
         self.cursor.execute(f"SELECT * FROM Livello{level}Goomba")
         goomba_records = self.cursor.fetchall()
@@ -923,7 +923,6 @@ class MyGame(arcade.View, threading.Thread, BanyanBase):
             self.goomba_sprite.center_x = record[1]
             self.goomba_sprite.center_y = record[2]
             self.goomba_list.append(self.goomba_sprite)
-
 
         # --- Load in the coordinates for koopa creation
         self.cursor.execute(f"SELECT * FROM Livello{level}Koopa")
@@ -934,14 +933,12 @@ class MyGame(arcade.View, threading.Thread, BanyanBase):
             self.koopa_sprite.center_y = record[2]
             self.koopa_list.append(self.koopa_sprite)
 
-
         # -- Load in the coordinates for coin creation ---
         self.cursor.execute(f"SELECT * FROM Livello{level}Coin")
         coin_records = self.cursor.fetchall()
         for record in coin_records:
             self.coin_sprite = Coin(float(record[1]), float(record[2]))
             self.coin_list.append(self.coin_sprite)
-
 
         # --- Load in the coordinates for checkpoint creation ---
         self.cursor.execute(f"SELECT * FROM Livello{level}Checkpoint")
@@ -951,7 +948,6 @@ class MyGame(arcade.View, threading.Thread, BanyanBase):
             self.checkpoint_sprite.center_x = float(record[1])
             self.checkpoint_sprite.center_y = float(record[2])
 
-
         # --- Load in the coordinates for door creation ---
         self.cursor.execute(f"SELECT * FROM Livello{level}Door")
         door_records = self.cursor.fetchall()
@@ -960,7 +956,6 @@ class MyGame(arcade.View, threading.Thread, BanyanBase):
             self.door_sprite.center_x = float(record[1])
             self.door_sprite.center_y = float(record[2])
                 
-
         if self.level == 4:
             self.window_list = arcade.tilemap.process_layer(map_object = my_map, layer_name = window_layer_name, scaling = TILE_SCALING, use_spatial_hash = True)
             # --- Load in the coordinates for door creation ---
@@ -968,6 +963,7 @@ class MyGame(arcade.View, threading.Thread, BanyanBase):
             platforms_records = self.cursor.fetchall()
             for record in platforms_records:
                 self.platform_sprite = Platform(float(record[1]), float(record[2]), float(record[3]), float(record[4]), float(record[5]))
+                self.wall_list.append(self.platform_sprite)
                 self.platform_list.append(self.platform_sprite)
 
         # Create the 'physics engine'
