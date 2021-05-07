@@ -1,5 +1,5 @@
 INSERT INTO `super_mario`.`livello1checkpoint` (`center_x`, `center_y`) VALUES (3622, 241.5);
-INSERT INTO `super_mario`.`livello2checkpoint` (`center_x`, `center_y`) VALUES (4095, 340);
+INSERT INTO `super_mario`.`livello2checkpoint` (`center_x`, `center_y`) VALUES (4126.5,367.5);
 INSERT INTO `super_mario`.`livello3checkpoint` (`center_x`, `center_y`) VALUES (9450, 273);
 INSERT INTO `super_mario`.`livello4checkpoint` (`center_x`, `center_y`) VALUES (9135, 525);
 INSERT INTO `super_mario`.`livello1door` (`center_x`, `center_y`) VALUES (7780, 697.5);
