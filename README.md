@@ -1,7 +1,7 @@
 # SuperMario P2P
 
 This is a Python implementation of the famous game Super Mario. 
-In particular, this game allows you to play both single-player and multi-player by a P2P mechanism.
+This game allows you to play both single-player and multi-player using P2P system.
 
 ## Instructions
 - To start game:
